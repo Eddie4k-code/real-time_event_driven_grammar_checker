@@ -6,15 +6,15 @@ This project is a proof of concept (PoC) demonstrating how Kafka, along with oth
 
 ### Project Components
 
-- **Frontend**: A React and TypeScript application that serves as the user interface. It allows users to input text they want to check for grammar errors.
+- **Frontend (React and TypeScript)**: A React and TypeScript application that serves as the user interface. It allows users to input text they want to check for grammar errors.
 
-- **UserInput Service**: This service receives user input, sends it to a Kafka topic called 'upload-text,' and communicates with the frontend through Socket.IO to provide status updates.
+- **UserInput Service (FastAPI and Python)**: This service receives user input, sends it to a Kafka topic called 'upload-text,' and communicates with the frontend through Socket.IO to provide status updates.
 
-- **GrammarChecker Service**: Consumes messages from the 'upload-text' Kafka topic, checks the grammar, and publishes the results to a Kafka topic called 'grammar-checked.' The UserInput service subscribes to this topic and sends the results to the frontend via Socket.IO for user feedback.
+- **GrammarChecker Service (TypeScript)**: Consumes messages from the 'upload-text' Kafka topic, checks the grammar, and publishes the results to a Kafka topic called 'grammar-checked.' The UserInput service subscribes to this topic and sends the results to the frontend via Socket.IO for user feedback.
 
 ### Technology Stack
 
-- **React and TypeScript**: Used for the frontend to create a responsive and interactive user interface.
+- **React**: Used for the frontend to create a responsive and interactive user interface.
 
 - **Kafka**: A distributed event streaming platform that facilitates message processing between services in real-time.
 
