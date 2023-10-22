@@ -22,7 +22,7 @@ This project is a proof of concept (PoC) demonstrating how Kafka, along with oth
 
 - **Docker**: The Kafka cluster is set up using Docker Compose for easy deployment.
 
-## Architecture
+## Get Started
 
 The architecture of this PoC project can be summarized in the following steps:
 
