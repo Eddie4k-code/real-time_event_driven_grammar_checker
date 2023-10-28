@@ -1,7 +1,7 @@
 import { MyConsumer } from "./Consumer/consumer";
-
 import {Kafka} from "kafkajs";
 import axios from 'axios';
+import { onUploadTextConsume } from "./Consumer/utils";
 
 
 export const kafka = new Kafka({
@@ -12,18 +12,7 @@ export const kafka = new Kafka({
 //Create consumer
 const textConsumer = new MyConsumer();
 
-
-//Function will check the grammar for text read by the consumer
-const onUploadTextConsume = () => {
-
-
-
-
-}
-
-
-
-//Start consuming messages
+//Start consuming messages from 'upload-text'
 textConsumer.consume(onUploadTextConsume);
 
 

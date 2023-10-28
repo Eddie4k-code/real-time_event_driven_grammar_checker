@@ -10,10 +10,18 @@ function App() {
   const socket = io("http://localhost:8000", {path: "/sockets"})
 
   const [text, setText] = useState<string>("");
-  const [result, setResult] = useState<string>("");
+  const [results, setResults] = useState<Result[]>([]);
   const [sessionId, setSessionId] = useState<string | null>(null)
   const [connected, setConnected] = useState(socket.connected);
   const [status, setStatus] = useState("");
+
+
+  //Structure of what a result looks like
+  interface Result {
+    message?: string
+    replacements?: Array<any>
+    sentence?: string
+  }
 
 
   useEffect(() => {
@@ -50,11 +58,15 @@ function App() {
 
     //When Grammar is checked the result is sent back to the client.
     socket.on("checked", (data) => {
-      if (data.sessionId == sessionId) {
+      console.log(data);
+      console.log(data.sessionId);
+      if (localStorage.getItem("sessionID") == data.sessionId) {
         setStatus("Checked!");
-        setResult(data.result)
+        setResults(data.result)
       }
     });
+
+
 
     console.log(status)
 
@@ -62,8 +74,8 @@ function App() {
   }, []);
 
 
-  //Handles functionality for when the user submits text
-  const handeUploadText = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  //Sends uploaded text to the backend (userinput service)
+  const handleUploadText = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     //axios request to backend (/upload-text)
 
@@ -84,13 +96,30 @@ function App() {
 
 
   return (
-
-      <>
-    <input placeholder="Enter Text" onChange={(e) => setText(e.target.value)}></input>
-    <button onClick={handeUploadText}>Upload Text</button>
-    <h1>{status}</h1>
-      </>
-   
+    <div className="app-container">
+      <h1>Grammar Checker</h1>
+      <input
+        placeholder="Enter Text"
+        onChange={(e) => setText(e.target.value)}
+      />
+      <button onClick={handleUploadText}>Upload Text</button>
+      <h2>Status: {status}</h2>
+      <div className="results-container">
+        {results.length > 0 ? (
+          results.map((result, index) => (
+            <div key={index} className="result-item">
+              <div className="result-message">{result.message}</div>
+              <div className="result-sentence">{result.sentence}</div>
+              <div className="result-replacements">
+                Replacements: {result.replacements?.map((r) => r.value).join(", ")}
+              </div>
+            </div>
+          ))
+        ) : (
+          <div className="no-results">No results to display.</div>
+        )}
+      </div>
+    </div>
   );
 }
 

@@ -20,7 +20,7 @@ This project is a proof of concept (PoC) demonstrating how Kafka, along with oth
 
 - **Socket.IO**: Enables bidirectional communication between the frontend and the UserInput service for status updates and results.
 
-- **Docker**: The Kafka cluster is set up using Docker Compose for easy deployment.
+- **Docker**: The Kafka cluster is set up using Docker Compose.
 
 ## Get Started
 
@@ -53,6 +53,8 @@ The architecture of this PoC project can be summarized in the following steps:
      ``` bash
      npm install
      ```
+   - The Grammar Checker service uses a Grammar API from RapidAPI located at this [link](https://rapidapi.com/grammarbot/api/grammarbot).
+   - Create a .env and set your api key as the value for API_SECRET
    - Start the Grammar Checker service using the following command:
      ```bash
      npm start
