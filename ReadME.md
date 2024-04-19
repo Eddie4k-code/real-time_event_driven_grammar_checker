@@ -83,5 +83,5 @@ The architecture of this PoC project can be summarized in the following steps:
 
 ## Conclusion
 
-This project demonstrates a microservices architecture for a grammar checker, emphasizing real-time communication using Kafka and Socket.IO. It showcases the seamless flow of data from user input to grammar checking and back to the user in a distributed and scalable manner.
+This project demonstrates event driven architecture for a grammar checker, emphasizing real-time communication using Kafka and Socket.IO. It showcases the seamless flow of data from user input to grammar checking and back to the user in a distributed and scalable manner.
 
